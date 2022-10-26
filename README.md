@@ -1,5 +1,9 @@
 ## The game Fighter 
 
+### Wireframe
+
+![wireframe](./planning/wireframe.png)
+
 ### Backlog
 https://github.com/users/arkadiyshin/projects/7/
 
