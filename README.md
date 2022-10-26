@@ -1,5 +1,9 @@
 ## The game Fighter 
 
+### Backlog
+https://github.com/users/arkadiyshin/projects/7/
+
+
 ### ER Diagram
 
 ```mermaid
