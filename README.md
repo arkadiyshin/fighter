@@ -5,6 +5,9 @@
 ```mermaid
 erDiagram
 
+USERS ||--|{ AVATARS : "use"
+ENEMIES ||--|{ AVATARS : "use"
+
 USERS{
   int id PK
   string username
@@ -15,6 +18,7 @@ USERS{
   int strength
   int dexterity
   int intuition
+  int avatar_id
 }
 
 ENEMIES{
@@ -25,6 +29,12 @@ ENEMIES{
   int strength
   int dexterity
   int intuition
+  int avatar_id
+}
+
+AVATARS{
+  int id PK
+  blob avatar
 }
 
 ```
