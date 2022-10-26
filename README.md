@@ -39,6 +39,7 @@ ENEMIES{
 AVATARS{
   int id PK
   blob avatar
+  enum alignment "good|bad"
 }
 
 ```
