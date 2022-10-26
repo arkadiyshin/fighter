@@ -1,9 +1,19 @@
 ## The game Fighter 
 
+### Backlog
+https://github.com/users/arkadiyshin/projects/7/
+
+### API 
+
+https://akabab.github.io/superhero-api/
+
 ### ER Diagram
 
 ```mermaid
 erDiagram
+
+USERS ||--|{ AVATARS : "use"
+ENEMIES ||--|{ AVATARS : "use"
 
 USERS{
   int id PK
@@ -15,6 +25,7 @@ USERS{
   int strength
   int dexterity
   int intuition
+  int avatar_id
 }
 
 ENEMIES{
@@ -25,6 +36,13 @@ ENEMIES{
   int strength
   int dexterity
   int intuition
+  int avatar_id
+}
+
+AVATARS{
+  int id PK
+  blob avatar
+  enum alignment "good|bad"
 }
 
 ```
