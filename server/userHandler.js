@@ -18,17 +18,16 @@ import {database} from "./database.js";
 
 
   export const getUserByUserNameAndPassword = (req, res, next) => {
-    const { username } = req.body;
-    console.log(req.body);
+    const { username } = req.body;    
     database
       .query("select * from users where username = ?", [username])
       .then(([users]) => {
         if (users[0] != null) {
           req.user = users[0];
-  
+          
           next();
         } else {
-          res.sendStatus(401);
+          res.send('Unknow user');
         }
       })
       .catch((err) => {

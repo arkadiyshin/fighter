@@ -12,8 +12,7 @@ const hashingOptions = {
 export const hashPassword = (req, res, next) => {    
     argon2
         .hash(req.body.password, hashingOptions)
-        .then((password_hash)=>{
-            console.log(password_hash);
+        .then((password_hash)=>{            
             req.body.password_hash = password_hash;
             delete req.body.password;            
             next();
@@ -31,7 +30,7 @@ export const verifyPassword = (req, res) => {
         if (isVerified) {
           res.send("password right");
         } else {
-          res.sendStatus(401).send('password error');
+          res.send('password error');
         }
       })
       .catch((err) => {
@@ -39,7 +38,6 @@ export const verifyPassword = (req, res) => {
         res.sendStatus(500);
       });
   };
-
 
 
 

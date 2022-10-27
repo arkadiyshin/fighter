@@ -20,4 +20,4 @@ app.listen(PORT, (err) => {
 
 
 app.post("/signUp", hashPassword, createUser);
-app.post("/login", verifyPassword, getUserByUserNameAndPassword);
+app.post("/login", getUserByUserNameAndPassword, verifyPassword);
