@@ -30,13 +30,11 @@ const validationSchema = Yup.object({
 export const SignUpForm = () => {
   const [checkedEye, setCheckedEye] = useState(false);
   const [isHoveringUserName, setIsHoveringUserName] = useState(false);
-  const [isHoveringPassword, setisHoveringPassword] = useState(false);
-  const [isRegistrationDataCorrect, setisRegistrationDataCorrect] =
-    useState(true);
+  const [isHoveringPassword, setisHoveringPassword] = useState(false);  
 
   const handleSignIn = (values) => {
     axios
-      .post("http://localhost:3000/signUp", values)
+      .post("http://localhost:5001/auth/signup", values)
       .then((res) => console.log(res));
   };
 
