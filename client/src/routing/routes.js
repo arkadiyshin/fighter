@@ -1,29 +1,38 @@
+import { SignUpForm } from "../pages/SignUpForm";
+import { LoginForm } from "../pages/LoginForm";
 import { Main } from "../pages/Main";
 import { Fight } from "../pages/Fight";
 
 export const locations = {
-  Login : "/",
-  Main: "/main",
-  Fight : "/fight", 
-}
+  LOGIN: "/",
+  SIGNUP: "/signup",
+  MAIN: "/main",
+  FIGHT : "/fight", 
+};
+
 export const routes = [
   {
-    path: locations.main,
+    path: locations.LOGIN,
+    component: LoginForm,
+    name: "LoginForm",
+    exact: true,
+  },
+  {
+    path: locations.SIGNUP,
+    component: SignUpForm,
+    name: "SignUpForm",
+    exact: true,
+  },
+  {
+    path: locations.MAIN,
     component: Main,
     name: "Main",
     exact: true,
   },
   {
-    path: locations.main,
-    component: Main,
-    name: "Main",
-    exact: true,
-  },
-  {
-    path: locations.Fight,
+    path: locations.FIGHT,
     component: Fight,
     name: "Fight",
     exact: true,
   },
-  
 ];
