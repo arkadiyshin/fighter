@@ -6,6 +6,7 @@ dotenv.config();
 
 import authRouter from './routes/auth/auth.js';
 import userRouter from './routes/users/index.js';
+import gameRouter from './routes/games/index.js';
 
 
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/games", gameRouter);
 
 app.listen(PORT, (err) => {
     if (err) console.error(err);
