@@ -71,7 +71,7 @@ export const updateSkills = async (req, res) => {
         health,
         strength,
         dexterity,
-        intuition 
+        intuition
     } = req.body;
 
     const result = await db.query(`UPDATE users SET health = $1, strength = $2, dexterity = $3, intuition = $4, free_points = $5 WHERE id = $6`,
