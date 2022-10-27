@@ -2,8 +2,6 @@ import db from "../db/index.js";
 
 
 export const startGame = async (req, res) => {
-    //enemy_name, enemy_level, enemy_health, enemy_strength, enemy_dexterity, enemy_intuition, enemy_avatar
-    console.log(req.query)
     const { level_min, level_max } = req.query;
     const result = await db.query(`SELECT name as enemy_name, level as enemy_level, health as enemy_health, 
     strength as enemy_strength, dexterity as enemy_dexterity, intuition as enemy_intuition, avatar_url as enemy_avatar_url
