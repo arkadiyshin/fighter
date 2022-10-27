@@ -16,6 +16,6 @@ app.use("/auth", authRouter);
 app.use(cors());
 
 app.listen(PORT, (err) => {
-  if (err) console.error(err);
-  console.log(`Server running on http://localhost:${PORT}`);
+    if (err) console.error(err);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
