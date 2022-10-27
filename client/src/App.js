@@ -1,11 +1,14 @@
 import "./App.css";
-import { Main } from "./pages/Main";
+import { AppStyled } from "./App.styled";
+import { Fight } from "./pages/Fight";
+import { Routing } from "./routing/Routing";
 
 function App() {
   return (
-  <>
-    <Main/>
-  </>
+  <AppStyled>
+    {/* <Routing/> */}
+    <Fight/>
+  </AppStyled>
   )
 }
 

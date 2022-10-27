@@ -8,8 +8,10 @@ export const Main = ()=> {
     return(
         <MainStyled>
             <Logo/>
-            <UserInfo/>
-            <Map/>
+            <div className='flex'>
+                <UserInfo/>
+                <Map/>
+            </div>
         </MainStyled>
     )
 }
