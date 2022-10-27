@@ -1,10 +1,13 @@
 import "./App.css";
-import { LoginForm } from "./pages/LoginForm";
+import { Routing } from "./routing/Routing";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <LoginForm />
+      <BrowserRouter>
+        <Routing />
+      </BrowserRouter>
     </div>
   );
 }

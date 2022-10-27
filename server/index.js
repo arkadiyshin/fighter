@@ -1,9 +1,9 @@
-import express from 'express';
-import * as dotenv from 'dotenv'
-import authRouter from './routes/auth/auth.js';
-import { getUserByUserNameAndPassword,createUser } from "./userHandler.js";
-import { hashPassword,verifyPassword } from './routes/auth/auth.js'
-
+import express from "express";
+import * as dotenv from "dotenv";
+import authRouter from "./routes/auth/auth.js";
+import { getUserByUserNameAndPassword, createUser } from "./userHandler.js";
+import { hashPassword, verifyPassword } from "./routes/auth/auth.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -11,13 +11,13 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
-app.use('/auth', authRouter);
+app.use("/auth", authRouter);
+app.use(cors());
 
 app.listen(PORT, (err) => {
-    if (err) console.error(err);
-    console.log(`Server running on http://localhost:${PORT}`);
+  if (err) console.error(err);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
-
 
 app.post("/signUp", hashPassword, createUser);
 app.post("/login", getUserByUserNameAndPassword, verifyPassword);

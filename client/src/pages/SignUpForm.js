@@ -5,7 +5,6 @@ import {
   GlobalStyle,
   Logo,
   LogInTitle,
-  SignUpButton,
   ErrorIcon,
   ErrorMessage,
   CheckBoxIcon,
@@ -20,7 +19,6 @@ import {
 } from "./LoginForm.styled";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object({
   username: Yup.string().required(),
@@ -29,17 +27,17 @@ const validationSchema = Yup.object({
     .required(),
 });
 
-export const LoginForm = () => {
+export const SignUpForm = () => {
   const [checkedEye, setCheckedEye] = useState(false);
   const [isHoveringUserName, setIsHoveringUserName] = useState(false);
   const [isHoveringPassword, setisHoveringPassword] = useState(false);
-  const navigate = useNavigate();
+  const [isRegistrationDataCorrect, setisRegistrationDataCorrect] =
+    useState(true);
+
   const handleSignIn = (values) => {
-    axios.post("http://localhost:3000/login", values).then((res) => {
-      if (res.data === "password right") {
-        navigate("/account");
-      }
-    });
+    axios
+      .post("http://localhost:3000/signUp", values)
+      .then((res) => console.log(res));
   };
 
   const formik = useFormik({
@@ -55,7 +53,7 @@ export const LoginForm = () => {
       <LoginContainer>
         <Logo src={NEW_CONSTANT.logo} />
         <FormContainer>
-          <LogInTitle>Log In</LogInTitle>
+          <LogInTitle>Sign Up</LogInTitle>
           <LogInForm onSubmit={formik.handleSubmit} noValidate>
             <InputField
               {...formik.getFieldProps("username")}
@@ -96,7 +94,7 @@ export const LoginForm = () => {
               onClick={() => setCheckedEye(!checkedEye)}
             />
             <LogInButton type="submit" disabled={formik.isSubmitting}>
-              Login
+              Sign up
             </LogInButton>
           </LogInForm>
         </FormContainer>

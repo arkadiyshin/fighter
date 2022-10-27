@@ -1,7 +1,6 @@
 import { express } from "express";
-import { getUserByUserNameAndPassword,createUser } from "./userHandler";
-import { hashPassword,verifyPassword } from './routes/auth/auth'
-
+import { getUserByUserNameAndPassword, createUser } from "./userHandler";
+import { hashPassword, verifyPassword } from "./routes/auth/auth";
 
 require("dotenv").config();
 const app = express();
