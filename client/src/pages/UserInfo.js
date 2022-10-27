@@ -1,21 +1,23 @@
 import React from 'react';
+import { Avatar } from './Avatar';
+import { Skills } from './Skills';
 
 export const UserInfo = ()=> {
     return(
         <div>
             <div>
-                Avatar
+                <Avatar/>
             </div>
             <div>
-                Name
+                UserName
             </div>
             <div>
                 Level
             </div>
             <div>
-                Skills
+                <Skills/>
             </div>
-            
+
         </div>
     )
 }
