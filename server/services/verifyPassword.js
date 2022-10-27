@@ -1,6 +1,7 @@
 import argon2 from "argon2";
 
-export const verifyPassword = (req, res) => {
+
+const verifyPassword = (req, res) => {
     argon2
         .verify(req.user.password_hash, req.body.password)
         .then((isVerified) => {
@@ -15,3 +16,5 @@ export const verifyPassword = (req, res) => {
             res.sendStatus(500);
         });
 };
+
+export default verifyPassword;

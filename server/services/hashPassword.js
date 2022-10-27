@@ -7,7 +7,7 @@ const hashingOptions = {
     parallelism: 1,
 }
 
-export const hashPassword = (req, res, next) => {    
+const hashPassword = (req, res, next) => {    
     argon2
         .hash(req.body.password, hashingOptions)
         .then((password_hash)=>{            
@@ -20,3 +20,5 @@ export const hashPassword = (req, res, next) => {
             res.sendStatus(500);
         });
 };
+
+export default hashPassword;

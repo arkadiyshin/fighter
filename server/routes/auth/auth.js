@@ -1,12 +1,12 @@
 import express from 'express';
-import hashPassword from '../../services/hashPassword'
-import verifyPassword from '../../services/verifyPassword'
+import hashPassword from '../../services/hashPassword.js'
+import verifyPassword from '../../services/verifyPassword.js'
 
-import {createUser, getUserByUserNameAndPassword} from '../../handlers/userHandler'
+import {createUser, getUserByUserNameAndPassword} from '../../handlers/userHandler.js'
 
 
 const authRouter = express.Router();
-app.post("/signUp", hashPassword, createUser);
-app.post("/login", verifyPassword, getUserByUserNameAndPassword);
+authRouter.post("/signUp", hashPassword, createUser);
+authRouter.post("/login", verifyPassword, getUserByUserNameAndPassword);
 
 export default authRouter;
