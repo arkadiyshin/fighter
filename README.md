@@ -115,7 +115,7 @@ ENEMIES{
 
 AVATARS{
   int id PK
-  blob avatar
+  string avatar_url
   enum alignment "good|bad"
 }
 
