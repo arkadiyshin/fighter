@@ -16,7 +16,7 @@ import {
   RulesContainer,
   RulesDescription,
   RulesList,
-} from "./LoginForm.styled";
+} from "../components/LoginForm.styled";
 import axios from "axios";
 import { useState } from "react";
 

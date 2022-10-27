@@ -18,7 +18,7 @@ import {
   RulesDescription,
   RulesList,
   RegistrationLink,
-} from "./LoginForm.styled";
+} from "../components/LoginForm.styled";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
