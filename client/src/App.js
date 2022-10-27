@@ -1,7 +1,15 @@
 import "./App.css";
+import { AppStyled } from "./App.styled";
+import { Fight } from "./pages/Fight";
+import { Routing } from "./routing/Routing";
 
 function App() {
-  return <div></div>;
+  return (
+  <AppStyled>
+    {/* <Routing/> */}
+    <Fight/>
+  </AppStyled>
+  )
 }
 
 export default App;
