@@ -115,6 +115,9 @@ erDiagram
 
 USERS ||--|{ AVATARS : "use"
 ENEMIES ||--|{ AVATARS : "use"
+USERS ||--|{ LEVELS : "use"
+ENEMIES ||--|{ LEVELS : "use"
+
 
 USERS{
   int id PK
