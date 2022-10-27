@@ -1,17 +1,23 @@
-import { Pool } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
 
 const connectionString = process.env.DB_CONNECTION;
 
 const pool = new Pool({
     connectionString,
+    ssl: {
+        rejectUnauthorized: false,
+    },
 })
+
 
 export default {
     async query(text, params) {
         const start = Date.now()
         const res = await pool.query(text, params)
         const duration = Date.now() - start
-        console.log('executed query', { text, duration, rows: res.rowCount })
+        console.log('executed query', { text, duration})
+        console.log(res)
         return res
     },
     async getClient() {
