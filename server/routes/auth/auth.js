@@ -6,7 +6,7 @@ import {createUser, getUserByUserNameAndPassword} from '../../handlers/userHandl
 
 
 const authRouter = express.Router();
-authRouter.post("/signUp", hashPassword, createUser);
-authRouter.post("/login", verifyPassword, getUserByUserNameAndPassword);
+authRouter.post("/signup", hashPassword, createUser);
+authRouter.post("/login", getUserByUserNameAndPassword, verifyPassword);
 
 export default authRouter;

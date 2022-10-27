@@ -1,7 +1,12 @@
 import pkg from 'pg';
 const { Pool } = pkg;
 
+import * as dotenv from 'dotenv'
+dotenv.config();
+
 const connectionString = process.env.DB_CONNECTION;
+
+console.log(connectionString)
 
 const pool = new Pool({
     connectionString,
@@ -10,14 +15,12 @@ const pool = new Pool({
     },
 })
 
-
 export default {
     async query(text, params) {
         const start = Date.now()
         const res = await pool.query(text, params)
         const duration = Date.now() - start
-        console.log('executed query', { text, duration})
-        console.log(res)
+        //console.log('executed query', { text, duration })
         return res
     },
     async getClient() {

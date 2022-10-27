@@ -4,11 +4,11 @@ export const createUser = (req, res) => {
   const { username, password_hash } = req.body;
   db
     .query(
-      "INSERT INTO users(username, password_hash) VALUES (?, ?)",
+      "INSERT INTO users (username, password_hash) VALUES ($1, $2) RETURNING *",
       [username, password_hash]
     )
-    .then(([result]) => {
-      res.location(`/signUp/${result.id}`).sendStatus(201);
+    .then((result) => {
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -20,10 +20,12 @@ export const createUser = (req, res) => {
 export const getUserByUserNameAndPassword = (req, res, next) => {
   const { username } = req.body;
   db
-    .query("select * from users where username = ?", [username])
-    .then(([users]) => {
-      if (users[0] != null) {
-        req.user = users[0];
+    .query("select * from users where username = $1", [username])
+    .then((users) => {
+      //console.log(users.rows)
+      if (users.rows[0] != null) {
+        req.user = users.rows[0];
+        console.log(req.user)
 
         next();
       } else {
