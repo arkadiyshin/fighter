@@ -45,10 +45,30 @@ responce {
   avatar
 }
 
+#### PUT /users/:id/profile
+
+body{
+  avatar_id,
+}
+
+#### PUT /users/:id/skills
+
+body{
+  free_points,
+  health,
+  strength,
+  dexterity,
+  intuition,
+}
+
 
 ### GAME
 
-#### GET /games/start/:player_id
+#### GET /games/start
+query{
+  level_min,
+  level_max
+}
 
 responce{
   enemy_name,
@@ -57,7 +77,7 @@ responce{
   enemy_strength,
   enemy_dexterity,
   enemy_intuition,
-  enemy_avatar
+  enemy_avatar_url
 }
 
 #### POST /games/finish/:player_id
@@ -73,6 +93,14 @@ responce{
   experince,
   level,
   free_points
+}
+
+### AVATARS
+
+#### GET /avatars/
+{
+  id,
+  avatar_url
 }
 
 
@@ -117,6 +145,12 @@ AVATARS{
   int id PK
   string avatar_url
   enum alignment "good|bad"
+}
+
+LEVELS{
+  int level PK
+  int experience
+  int free_points
 }
 
 ```
