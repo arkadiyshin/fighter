@@ -17,6 +17,7 @@ import {
   RulesContainer,
   RulesDescription,
   RulesList,
+  RegistrationLink,
 } from "./LoginForm.styled";
 import axios from "axios";
 import { useState } from "react";
@@ -95,6 +96,9 @@ export const LoginForm = () => {
               src={checkedEye ? NEW_CONSTANT.openEye : NEW_CONSTANT.closedEye}
               onClick={() => setCheckedEye(!checkedEye)}
             />
+            <RegistrationLink onClick={() => navigate("/signup")}>
+              Create new account
+            </RegistrationLink>
             <LogInButton type="submit" disabled={formik.isSubmitting}>
               Login
             </LogInButton>

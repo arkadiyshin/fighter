@@ -101,10 +101,9 @@ export const LogInButton = styled.button`
   outline: none;
   box-sizing: border-box;
   color: white;
-  margin-top: 40px;
+  margin-top: 20px;
   background: #CC2229;
   height: 40px;
-  // border-radius: 20px;
   cursor: pointer;
   font-weight: 900;
 }
@@ -141,6 +140,15 @@ export const CheckBoxIcon = styled.img`
   margin-top: -55px;
   margin-left: 180px;
   height: 60px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const RegistrationLink = styled.a`
+  color: white;
+  margin-left: 140px;
 
   &:hover {
     cursor: pointer;
