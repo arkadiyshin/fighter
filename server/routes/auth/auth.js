@@ -1,5 +1,6 @@
 import express from 'express';
 import argon2 from "argon2";
+import {createUser, getUserByUserNameAndPassword} from '../../handlers/userHandler'
 
 
 const hashingOptions = {
@@ -43,5 +44,7 @@ export const verifyPassword = (req, res) => {
 
 
 const authRouter = express.Router();
+app.post("/signUp", hashPassword, createUser);
+app.post("/login", verifyPassword, getUserByUserNameAndPassword);
 
 export default authRouter;
