@@ -126,7 +126,7 @@ export const finishGame = async (req, res) => {
             free_points: newFreePoints 
         }
         console.log(changes)
-        res.status(204).send(changes);
+        res.status(202).send(changes);
     } else {
         throw 'Unknown error';
     }
