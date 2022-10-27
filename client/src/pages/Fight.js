@@ -11,8 +11,9 @@ export const Fight = ()=> {
             <div className='flex'>
                 <div className="flex2">
                     <FighterStyled src={fighter} alt="" />
-                    <h2>Attack</h2>
+                    
                     <div className='checkbox'>
+                        <h2>Attack</h2>
                         <label>
                             <input type="checkbox" name="Head"/>
                             Head
@@ -27,7 +28,7 @@ export const Fight = ()=> {
                         </label>
                     </div>
                 </div>
-                <div className="flex2">                    
+                <div className="flex">                    
                     <h2>Defence</h2>
                     <label>
                         <input type="checkbox" name="Head"/>
