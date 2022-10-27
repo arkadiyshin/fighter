@@ -4,8 +4,7 @@ import { NEW_CONSTANT } from "../constants/constants";
 import {
   GlobalStyle,
   Logo,
-  LogInTitle,
-  SignUpButton,
+  LogInTitle,  
   ErrorIcon,
   ErrorMessage,
   CheckBoxIcon,
@@ -36,9 +35,9 @@ export const LoginForm = () => {
   const [isHoveringPassword, setisHoveringPassword] = useState(false);
   const navigate = useNavigate();
   const handleSignIn = (values) => {
-    axios.post("http://localhost:3000/login", values).then((res) => {
+    axios.post("http://localhost:5001/auth/login", values).then((res) => {
       if (res.data === "password right") {
-        navigate("/account");
+        navigate("/main");
       }
     });
   };
