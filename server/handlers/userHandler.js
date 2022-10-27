@@ -37,3 +37,16 @@ export const getUserByUserNameAndPassword = (req, res, next) => {
       res.status(500).send("Error retrieving data from database");
     });
 };
+
+export const getUser = async(req, res) => {
+  const {id} = req.params;
+  const result = await db.query(`SELECT username, level, experience, health, strength, dexterity, intuition, free_points, avatar_url
+                                FROM users 
+                                LEFT JOIN avatars
+	                              ON users.avatar_id = avatars.id
+                                WHERE users.id = $1`, [id])
+  if (result.rowCount > 0) {
+    res.send(result.rows[0]);
+  }
+
+}

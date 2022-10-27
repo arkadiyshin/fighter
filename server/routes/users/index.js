@@ -1,7 +1,7 @@
 import express from 'express';
-
+import {getUser} from '../../handlers/userHandler.js'
 
 const userRouter = express.Router();
-authRouter.get("/users/:id", getUser);
+userRouter.get("/:id", getUser);
 
-export default authRouter;
+export default userRouter;

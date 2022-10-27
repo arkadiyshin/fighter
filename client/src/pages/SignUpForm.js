@@ -36,7 +36,7 @@ export const SignUpForm = () => {
 
   const handleSignIn = (values) => {
     axios
-      .post("http://localhost:3000/signUp", values)
+      .post("http://localhost:3000/auth/signup", values)
       .then((res) => console.log(res));
   };
 
