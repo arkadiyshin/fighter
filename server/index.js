@@ -4,6 +4,7 @@ import cors from 'cors';
 
 dotenv.config();
 
+import header from './services/headerContent.js';
 import authRouter from './routes/auth/auth.js';
 import userRouter from './routes/users/index.js';
 import gameRouter from './routes/games/index.js';
@@ -15,6 +16,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(header);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/games", gameRouter);
