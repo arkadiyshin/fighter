@@ -9,6 +9,7 @@ import authRouter from './routes/auth/auth.js';
 import userRouter from './routes/users/index.js';
 import gameRouter from './routes/games/index.js';
 import avatarRouter from './routes/avatars/index.js';
+import tileRouter from './routes/tiles/index.js';
 
 
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,7 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/games", gameRouter);
 app.use("/avatars", avatarRouter);
+app.use("/tiles", tileRouter);
 
 app.listen(PORT, (err) => {
     if (err) console.error(err);
