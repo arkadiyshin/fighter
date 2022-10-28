@@ -7,7 +7,7 @@ export const MapStyled = styled.div`
   width: 70%;
   margin: 70px auto;
   display: grid; 
-  grid-template-columns: repeat(23,5%);
-  gird-template-rows: repeat(20,5%);
+  grid-template-columns: repeat(25,4%);
+  gird-template-rows: repeat(19,4%);
 `;
 //background-image: url(${background});

@@ -3,7 +3,7 @@ import db from "../db/index.js";
 
 export const getTiles = async (req, res) => {
 
-    const result = await db.query(`SELECT * FROM tiles JOIN tile_types ON tiles.tile_type_id = tile_types.id ORDER BY x,y`)
+    const result = await db.query(`SELECT * FROM tiles JOIN tile_types ON tiles.tile_type_id = tile_types.id ORDER BY y,x`)
     if (result.rowCount > 0) {
         res.send(result.rows);
     } else {
