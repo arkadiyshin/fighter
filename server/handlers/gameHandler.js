@@ -9,7 +9,9 @@ export const startGame = async (req, res) => {
     if(!level_max)level_max =100;
 
     const result = await db.query(
-        `SELECT name as enemy_name, 
+        `SELECT 
+            enemies.id as enemy_id,
+            name as enemy_name, 
             level as enemy_level, 
             health as enemy_health, 
             strength as enemy_strength, 
