@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setDexterity,
-  setHealth,
-  setStrangth,
-  setIntuition,
-  setSkills,
+    setDexterity,
+    setHealth,
+    setStrangth,
+    setIntuition,
 } from "../redux/skillsSlice";
 import api from "../services/api";
 import { SkillsStyled } from "./Skills.styled";
@@ -25,67 +24,68 @@ export const Skills = (props) => {
     const [edit, setEdit] = useState(false);
 
     function addStrength() {
-      dispatch(setStrangth());
+        dispatch(setStrangth());
     }
     function addDexterity() {
-      dispatch(setDexterity());
+        dispatch(setDexterity());
     }
     function addIntuition() {
-      dispatch(setIntuition());
+        dispatch(setIntuition());
     }
     function addHealth() {
-      dispatch(setHealth());
+        dispatch(setHealth());
     }
 
     const updateSkills = async () => {
-        setEdit( free_points > 0 );
+        setEdit(free_points > 0);
     }
-    
+
     useEffect(() => {
         updateSkills();
     }, [])
-    
+
     const saveSkills = async () => {
         
         const body = {
-            free_points, 
-            health, 
-            strength, 
-            dexterity, 
-            intuition, 
-        } 
+            free_points,
+            health,
+            strength,
+            dexterity,
+            intuition,
+        }
 
-        setEdit(false);
+        if(free_points <= 0) setEdit(false);
+        
         const res = await api.put(`users/${id}/skills`, body);
-        console.log(res); 
-  }
+        console.log(res);
+    }
 
-  return (
-    <SkillsStyled>
-      {" "}
-      Skills:
-      <h3>Level: {level}</h3>
-      <h3>Experience: {experience}</h3>
-      <li>
-        Strength : {strength} {edit && <button onClick={addStrength}>+</button>}
-      </li>
-      <li>
-        Dexterity : {dexterity}{" "}
-        {edit && <button onClick={addDexterity}>+</button>}
-      </li>
-      <li>
-        Intuition : {intuition}{" "}
-        {edit && <button onClick={addIntuition}>+</button>}
-      </li>
-      <li>
-        Health : {health} {edit && <button onClick={addHealth}>+</button>}
-      </li>
-      {edit && (
-        <div>
-          <h3>You have unallocated ability: {free_points}</h3>
-          <button onClick={saveSkills}> Save </button>
-        </div>
-      )}
-    </SkillsStyled>
-  );
+    return (
+        <SkillsStyled>
+            {" "}
+            Skills:
+            <h3>Level: {level}</h3>
+            <h3>Experience: {experience}</h3>
+            <li>
+                Strength : {strength} {edit && <button onClick={addStrength}>+</button>}
+            </li>
+            <li>
+                Dexterity : {dexterity}{" "}
+                {edit && <button onClick={addDexterity}>+</button>}
+            </li>
+            <li>
+                Intuition : {intuition}{" "}
+                {edit && <button onClick={addIntuition}>+</button>}
+            </li>
+            <li>
+                Health : {health} {edit && <button onClick={addHealth}>+</button>}
+            </li>
+            {edit && (
+                <div>
+                    <h3>You have unallocated ability: {free_points}</h3>
+                    <button onClick={saveSkills}> Save </button>
+                </div>
+            )}
+        </SkillsStyled>
+    );
 };
