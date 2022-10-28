@@ -13,7 +13,6 @@ export const LoginContainer = styled.div`
 `;
 
 export const RulesContainer = styled.div`
-  margin-top: -200px;
   border-top: 2px outset #cc2229;
   width: 100%;
 `;
@@ -101,7 +100,6 @@ export const LogInButton = styled.button`
   outline: none;
   box-sizing: border-box;
   color: white;
-  margin-top: 20px;
   background: #CC2229;
   height: 40px;
   cursor: pointer;
@@ -109,10 +107,10 @@ export const LogInButton = styled.button`
 }
 `;
 
-export const ErrorIcon = styled.img`
+export const UserNameErrorIcon = styled.img`
   position: absolute;
   margin-top: -50px;
-  margin-left: 220px;
+  margin-left: 215px;
   height: 50px;
 
   &:hover {
@@ -120,10 +118,37 @@ export const ErrorIcon = styled.img`
   }
 `;
 
-export const ErrorMessage = styled.div`
+export const PasswordErrorIcon = styled.img`
   position: absolute;
-  margin-top: -45px;
-  margin-left: 100px;
+  margin-top: -50px;
+  margin-left: 175px;
+  height: 50px;
+  z-index: 3;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const UserNameErrorMessage = styled.div`
+  position: absolute;
+  margin-top: -65px;
+  margin-left: 110px;
+  margin-right: 40px;
+  border: solid red 2px;
+  text-align: center;
+  background-color: rgb(226, 0, 26);
+  color: white;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  z-index: 5;
+  padding: 5px;
+`;
+
+export const PasswordErrorMessage = styled.div`
+  position: absolute;
+  margin-top: -65px;
+  margin-left: 80px;
   margin-right: 75px;
   border: solid red 2px;
   text-align: center;
@@ -131,14 +156,20 @@ export const ErrorMessage = styled.div`
   color: white;
   border-radius: 10px;
   font-size: 0.8rem;
-  z-index: 1;
+  z-index: 5;
   padding: 5px;
+`;
+
+export const LogInDataError = styled.p`
+  color: rgb(226, 0, 26);
+  margin-left: 30px;
+  margin-top: 0;
 `;
 
 export const CheckBoxIcon = styled.img`
   position: absolute;
   margin-top: -55px;
-  margin-left: 180px;
+  margin-left: 210px;
   height: 60px;
 
   &:hover {

@@ -5,8 +5,10 @@ import {
   GlobalStyle,
   Logo,
   LogInTitle,
-  ErrorIcon,
-  ErrorMessage,
+  PasswordErrorIcon,
+  UserNameErrorIcon,
+  UserNameErrorMessage,
+  PasswordErrorMessage,
   CheckBoxIcon,
   LogInForm,
   InputField,
@@ -16,9 +18,11 @@ import {
   RulesContainer,
   RulesDescription,
   RulesList,
+  LogInDataError,
 } from "../components/LoginForm.styled";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object({
   username: Yup.string().required(),
@@ -30,12 +34,21 @@ const validationSchema = Yup.object({
 export const SignUpForm = () => {
   const [checkedEye, setCheckedEye] = useState(false);
   const [isHoveringUserName, setIsHoveringUserName] = useState(false);
-  const [isHoveringPassword, setisHoveringPassword] = useState(false);  
+  const [isHoveringPassword, setisHoveringPassword] = useState(false);
+  const [isRegistrationDataCorrect, setisRegistrationDataCorrect] =
+    useState(true);
+  const [isUserNameExist, setIsUserNameExist] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignIn = (values) => {
-    axios
-      .post("http://localhost:3000/auth/signup", values)
-      .then((res) => console.log(res));
+    axios.post("http://localhost:3000/auth/signup", values).then((res) => {
+      console.log(res);
+      if (res.data === "Created") {
+        navigate("/");
+      } else if (res.data === "Such username already exists") {
+        setIsUserNameExist(true);
+      }
+    });
   };
 
   const formik = useFormik({
@@ -59,13 +72,15 @@ export const SignUpForm = () => {
             />
             {formik.errors.username && formik.touched.username && (
               <>
-                <ErrorIcon
+                <UserNameErrorIcon
                   src={NEW_CONSTANT.errorMark}
                   onMouseOver={() => setIsHoveringUserName(true)}
                   onMouseOut={() => setIsHoveringUserName(false)}
                 />
                 {isHoveringUserName && (
-                  <ErrorMessage>{formik.errors.username}</ErrorMessage>
+                  <UserNameErrorMessage>
+                    {formik.errors.username}
+                  </UserNameErrorMessage>
                 )}
               </>
             )}
@@ -77,13 +92,15 @@ export const SignUpForm = () => {
             />
             {formik.errors.password && formik.touched.password && (
               <>
-                <ErrorIcon
+                <PasswordErrorIcon
                   src={NEW_CONSTANT.errorMark}
                   onMouseOver={() => setisHoveringPassword(true)}
                   onMouseOut={() => setisHoveringPassword(false)}
                 />
                 {isHoveringPassword && (
-                  <ErrorMessage>{formik.errors.password}</ErrorMessage>
+                  <PasswordErrorMessage>
+                    {formik.errors.password}
+                  </PasswordErrorMessage>
                 )}
               </>
             )}
@@ -91,6 +108,9 @@ export const SignUpForm = () => {
               src={checkedEye ? NEW_CONSTANT.openEye : NEW_CONSTANT.closedEye}
               onClick={() => setCheckedEye(!checkedEye)}
             />
+            {isUserNameExist ? (
+              <LogInDataError>Such username already exists</LogInDataError>
+            ) : null}
             <LogInButton type="submit" disabled={formik.isSubmitting}>
               Sign up
             </LogInButton>

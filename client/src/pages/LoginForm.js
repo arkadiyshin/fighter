@@ -4,9 +4,12 @@ import { NEW_CONSTANT } from "../constants/constants";
 import {
   GlobalStyle,
   Logo,
-  LogInTitle,  
-  ErrorIcon,
-  ErrorMessage,
+  LogInTitle,
+  PasswordErrorIcon,
+  UserNameErrorIcon,
+  UserNameErrorMessage,
+  PasswordErrorMessage,
+  LogInDataError,
   CheckBoxIcon,
   LogInForm,
   InputField,
@@ -33,11 +36,15 @@ export const LoginForm = () => {
   const [checkedEye, setCheckedEye] = useState(false);
   const [isHoveringUserName, setIsHoveringUserName] = useState(false);
   const [isHoveringPassword, setisHoveringPassword] = useState(false);
+  const [isLoginDataRight, setIsLoginDataRight] = useState(true);
   const navigate = useNavigate();
   const handleSignIn = (values) => {
-    axios.post("http://localhost:5001/auth/login", values).then((res) => {
+    axios.post("http://localhost:3000/auth/login", values).then((res) => {
+      console.log(res);
       if (res.data === "password right") {
         navigate("/main");
+      } else if (res.data === "password error" || res.data === "Unknow user") {
+        setIsLoginDataRight(false);
       }
     });
   };
@@ -63,13 +70,15 @@ export const LoginForm = () => {
             />
             {formik.errors.username && formik.touched.username && (
               <>
-                <ErrorIcon
+                <UserNameErrorIcon
                   src={NEW_CONSTANT.errorMark}
                   onMouseOver={() => setIsHoveringUserName(true)}
                   onMouseOut={() => setIsHoveringUserName(false)}
                 />
                 {isHoveringUserName && (
-                  <ErrorMessage>{formik.errors.username}</ErrorMessage>
+                  <UserNameErrorMessage>
+                    {formik.errors.username}
+                  </UserNameErrorMessage>
                 )}
               </>
             )}
@@ -81,13 +90,15 @@ export const LoginForm = () => {
             />
             {formik.errors.password && formik.touched.password && (
               <>
-                <ErrorIcon
+                <PasswordErrorIcon
                   src={NEW_CONSTANT.errorMark}
                   onMouseOver={() => setisHoveringPassword(true)}
                   onMouseOut={() => setisHoveringPassword(false)}
                 />
                 {isHoveringPassword && (
-                  <ErrorMessage>{formik.errors.password}</ErrorMessage>
+                  <PasswordErrorMessage>
+                    {formik.errors.password}
+                  </PasswordErrorMessage>
                 )}
               </>
             )}
@@ -98,6 +109,9 @@ export const LoginForm = () => {
             <RegistrationLink onClick={() => navigate("/signup")}>
               Create new account
             </RegistrationLink>
+            {!isLoginDataRight ? (
+              <LogInDataError>Email or password is not correct</LogInDataError>
+            ) : null}
             <LogInButton type="submit" disabled={formik.isSubmitting}>
               Login
             </LogInButton>
