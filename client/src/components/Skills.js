@@ -14,6 +14,7 @@ export const Skills = (props) => {
     const free_points = useSelector((state) => state.skillsSlice.free_points);
     const experience = useSelector((state) => state.skillsSlice.experience);
     const level = useSelector((state) => state.skillsSlice.level);
+    const id = useSelector((state) => state.skillsSlice.id);
 
     const [edit, setEdit] = useState(false);
 
@@ -46,14 +47,24 @@ export const Skills = (props) => {
 
         setEdit(res.data.free_points > 0);
     }
-
+    
     useEffect(() => {
         updateSkills();
     }, [])
+    
+    const saveSkills = async () => {
+        
+        const body = {
+            free_points, 
+            health, 
+            strength, 
+            dexterity, 
+            intuition, 
+        } 
 
-    const saveSkills = () => {
-        // api(/users/1/updateSkills)
         setEdit(false);
+        const res = await api.put(`users/${id}/skills`, body);
+        console.log(res); 
     }
 
     return (

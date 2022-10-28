@@ -34,9 +34,7 @@ const validationSchema = Yup.object({
 export const SignUpForm = () => {
   const [checkedEye, setCheckedEye] = useState(false);
   const [isHoveringUserName, setIsHoveringUserName] = useState(false);
-  const [isHoveringPassword, setisHoveringPassword] = useState(false);
-  const [isRegistrationDataCorrect, setisRegistrationDataCorrect] =
-    useState(true);
+  const [isHoveringPassword, setisHoveringPassword] = useState(false);  
   const [isUserNameExist, setIsUserNameExist] = useState(false);
   const navigate = useNavigate();
 
