@@ -48,7 +48,7 @@ export const Skills = (props) => {
         
         const body = {
             free_points,
-            health,
+            health: health/10,
             strength,
             dexterity,
             intuition,
