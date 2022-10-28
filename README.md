@@ -20,7 +20,7 @@ USERS ||--|{ AVATARS : "use"
 ENEMIES ||--|{ AVATARS : "use"
 USERS ||--|{ LEVELS : "use"
 ENEMIES ||--|{ LEVELS : "use"
-
+TILES |{--|| TILE_TYPES : "use"
 
 USERS{
   int id PK
@@ -59,6 +59,17 @@ LEVELS{
   int free_points
 }
 
+TILE_TYPES{
+  int id PK
+  string title
+  bool crossable
+}
+
+TILES{
+  int x "PK x + y"
+  int y
+  int tile_type_id FK
+}
 ```
 
 ### API 
