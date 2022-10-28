@@ -1,44 +1,85 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDexterity, setHealth, setStrangth, setIntuition } from '../redux/skillsSlice';
+import { setDexterity, setHealth, setStrangth, setIntuition, setSkills } from '../redux/skillsSlice';
+import api from '../services/api';
 import { SkillsStyled } from './Skills.styled';
 
 
-export const Skills = (props)=> {
+export const Skills = (props) => {
     const dispatch = useDispatch();
-    const strength = useSelector ((state)=> state.skillsSlice.strength);
-    const dexterity = useSelector ((state) => state.skillsSlice.dexterity);
+    const strength = useSelector((state) => state.skillsSlice.strength);
+    const dexterity = useSelector((state) => state.skillsSlice.dexterity);
     const intuition = useSelector((state) => state.skillsSlice.intuition);
-    const health = useSelector ((state) => state.skillsSlice.health);
+    const health = useSelector((state) => state.skillsSlice.health);
+    const free_points = useSelector((state) => state.skillsSlice.free_points);
+    const experience = useSelector((state) => state.skillsSlice.experience);
+    const level = useSelector((state) => state.skillsSlice.level);
 
-    function addStrength () {
+    const [edit, setEdit] = useState(false);
+
+    function addStrength() {
         dispatch(setStrangth());
     };
-    function addDexterity () {
+    function addDexterity() {
         dispatch(setDexterity());
     };
-    function addIntuition () {
+    function addIntuition() {
         dispatch(setIntuition());
     };
-    function addHealth () {
-        dispatch(setHealth());
+    function addHealth() {
+        dispatch(setHealth(99));
     };
 
-    return(
-        <SkillsStyled> Skills:            
+    const updateSkills = async () => {
+
+        const res = await api('/users/1/');
+
+        dispatch(setSkills({
+            strength: res.data.strength,
+            dexterity: res.data.dexterity,
+            intuition: res.data.intuition,
+            health: res.data.health,
+            free_points: res.data.free_points,
+            experience: res.data.experience,
+            level: res.data.level
+        }))
+
+        setEdit(res.data.free_points > 0);
+    }
+
+    useEffect(() => {
+        updateSkills();
+    }, [])
+
+    const saveSkills = () => {
+        // api(/users/1/updateSkills)
+        setEdit(false);
+    }
+
+    return (
+        <SkillsStyled> Skills:
+            <h3>Level: {level}</h3>
+            <h3>Experience: {experience}</h3>
             <li>
-                Strength : {strength} <button onClick={addStrength}>+</button>
+                Strength : {strength} {edit && <button onClick={addStrength}>+</button>}
             </li>
             <li>
-                Dexterity : {dexterity} <button onClick={addDexterity}>+</button>
+                Dexterity : {dexterity} {edit && <button onClick={addDexterity}>+</button>}
             </li>
             <li>
-                Intuition : {intuition} <button onClick={addIntuition}>+</button>
+                Intuition : {intuition} {edit && <button onClick={addIntuition}>+</button>}
             </li>
             <li>
-                Health : {health} <button onClick={addHealth}>+</button>
+                Health : {health} {edit && <button onClick={addHealth}>+</button>}
             </li>
-            <h3>You have unallocated ability: 5</h3>
+
+            {edit &&
+                <div>
+                    <h3>You have unallocated ability: {free_points}</h3>
+                    <button onClick={saveSkills}> Save </button>
+                </div>
+            }
+            
         </SkillsStyled>
     )
 }

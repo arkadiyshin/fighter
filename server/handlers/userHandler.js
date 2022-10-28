@@ -17,7 +17,8 @@ export const createUser = (req, res) => {
 
 export const getUserByUserNameAndPassword = (req, res, next) => {
   const { username } = req.body;
-  db.query("select * from users where username = $1", [username])
+  db.query(`select users.*, avatars.avatar_url from users LEFT JOIN avatars
+          ON users.avatar_id = avatars.id where username = $1`, [username])
     .then((users) => {
       //console.log(users.rows)
       if (users.rows[0] != null) {
