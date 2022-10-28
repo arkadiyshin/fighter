@@ -66,107 +66,93 @@ LEVELS{
 ### USERS
 
 #### POST /users/signup
-body {
-  username,
-  password
-}
+> - body
+>   - username
+>   - password
 
-response {
-  201: created
-}  
+> - response
+>   - 201: created
+  
   
 #### POST /users/login
-body {
-  username,
-  password
-}
+> - body
+>   - username
+>   - password
 
-response {
-  202: success
-}  
+> - response
+>   - 202: success
+
 
 #### GET /users/:id
+> - responce 
+>   - 200:
+>   - username
+>   -  evel
+>   - experience
+>   - free_points
+>   - health
+>   - strength
+>   - dexterity
+>   - intuition  
+>   - avatar
 
-responce 
-200: {
-  username,
-  level,
-  experience,
-  free_points,
-  health,
-  strength,
-  dexterity,
-  intuition,
-  avatar
-}
 
 #### PUT /users/:id/profile
+> - body
+>   - avatar_id
 
-body{
-  avatar_id,
-}
-
-responce: {
-  202: success
-}
+> - responce
+>   - 202: success
+>   
 
 #### PUT /users/:id/skills
-
-body{
-  free_points,
-  health,
-  strength,
-  dexterity,
-  intuition,
-}
-responce: {
-  202: success
-}
+> - body
+>   - free_points
+>   - health
+>   - strength
+>   - dexterity
+>   - intuition
+  
+> - responce
+>   - 202: success
 
 
 ### GAME
 
 #### GET /games/start
-query{
-  level_min,
-  level_max
-}
+> - query
+>   - level_min
+>   - level_max
 
-responce
-200: {
-  enemy_name,
-  enemy_level,
-  enemy_health,
-  enemy_strength,
-  enemy_dexterity,
-  enemy_intuition,
-  enemy_avatar_url
-}
+> - responce
+>   - 200:
+>   - enemy_name
+>   - enemy_level
+>   - enemy_health
+>   - enemy_strength
+>   - enemy_dexterity
+>   - enemy_intuition
+>   - enemy_avatar_url
+>   
 
 #### POST /games/finish/:player_id
+> - body
+>   - player_id
+>   - player_health
+>   - enemy_id
+>   - enemy_health
 
-body{
-  player_id,
-  player_health,
-  enemy_id,
-  enemy_health
-}
+> - responce
+>   - 202:
+>   - experince
+>   - level
+>   - free_points
 
-responce
-202: {
-  experince,
-  level,
-  free_points
-}
 
 ### AVATARS
 
 #### GET /avatars/
-responce: 
-200: {
-  id,
-  avatar_url
-}
-
-
-
+> - responce 
+>   - 200:
+>   - id
+>   - avatar_url
