@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import fighter from '../assets/images/fighter.png'
-import fighter2 from '../assets/images/reversefighter.png'
 import { FighterP, FighterStyled } from './Fighter.styled';
 import '../App.css'
 import { getRandomEnemy, finishGame } from '../services/api';
@@ -30,7 +28,7 @@ export const Fight = () => {
     }, [])
 
     const punchHandler = async () => {
-        
+
         // check if choosen defence and attack
         if (!defence) {
             console.log('Chose defence!')
