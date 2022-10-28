@@ -54,7 +54,7 @@ export const checkIfUserNameExists = (req, res, next) => {
 
 export const getUser = async (req, res) => {
     const { id } = req.params;
-    const result = await db.query(`SELECT id, username, level, experience, health, strength, dexterity, intuition, free_points, avatar_url
+    const result = await db.query(`SELECT username, level, experience, health, strength, dexterity, intuition, free_points, avatar_url
                                 FROM users 
                                 LEFT JOIN avatars
 	                              ON users.avatar_id = avatars.id

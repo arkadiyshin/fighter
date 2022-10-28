@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDexterity, setHealth, setStrangth, setIntuition, setSkills } from '../redux/skillsSlice';
 import api from '../services/api';
@@ -15,6 +15,8 @@ export const Skills = (props) => {
     const experience = useSelector((state) => state.skillsSlice.experience);
     const level = useSelector((state) => state.skillsSlice.level);
 
+    const [edit, setEdit] = useState(false);
+
     function addStrength() {
         dispatch(setStrangth());
     };
@@ -29,7 +31,7 @@ export const Skills = (props) => {
     };
 
     const updateSkills = async () => {
-        
+
         const res = await api('/users/1/');
 
         dispatch(setSkills({
@@ -41,29 +43,43 @@ export const Skills = (props) => {
             experience: res.data.experience,
             level: res.data.level
         }))
+
+        setEdit(res.data.free_points > 0);
     }
-    
-    useEffect( () => {
+
+    useEffect(() => {
         updateSkills();
     }, [])
 
+    const saveSkills = () => {
+        // api(/users/1/updateSkills)
+        setEdit(false);
+    }
+
     return (
         <SkillsStyled> Skills:
-            <li>
-                Strength : {strength} <button onClick={addStrength}>+</button>
-            </li>
-            <li>
-                Dexterity : {dexterity} <button onClick={addDexterity}>+</button>
-            </li>
-            <li>
-                Intuition : {intuition} <button onClick={addIntuition}>+</button>
-            </li>
-            <li>
-                Health : {health} <button onClick={addHealth}>+</button>
-            </li>
-            <h3>You have unallocated ability: {free_points}</h3>
             <h3>Level: {level}</h3>
             <h3>Experience: {experience}</h3>
+            <li>
+                Strength : {strength} {edit && <button onClick={addStrength}>+</button>}
+            </li>
+            <li>
+                Dexterity : {dexterity} {edit && <button onClick={addDexterity}>+</button>}
+            </li>
+            <li>
+                Intuition : {intuition} {edit && <button onClick={addIntuition}>+</button>}
+            </li>
+            <li>
+                Health : {health} {edit && <button onClick={addHealth}>+</button>}
+            </li>
+
+            {edit &&
+                <div>
+                    <h3>You have unallocated ability: {free_points}</h3>
+                    <button onClick={saveSkills}> Save </button>
+                </div>
+            }
+            
         </SkillsStyled>
     )
 }
