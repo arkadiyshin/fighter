@@ -22,7 +22,7 @@ export const Map = () => {
   return (
     <MapStyled>
       {tiles.map((el) => (
-        <Tile tile={el} />
+        <Tile key={`x${el.x}y${el.y}`} tile={el} />
       ))}
     </MapStyled>
   );
