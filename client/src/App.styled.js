@@ -1,8 +1,19 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+import background from "./assets/background.jpg";
 
 export const AppStyled = styled.div`
-width:100vh;
-height: 100vh;
-margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+`;
 
-`
+export const GlobalStyle = createGlobalStyle`body {
+  background-image: url(${background});
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+`;

@@ -1,12 +1,14 @@
 import styled from "styled-components";
+import background from "../assets/background.jpg";
 
-export const MainStyled = styled.div`
-${'' /* display: grid;
-grid-template-areas: "UserInfoStyled  LogoStyled"
-                     "UserInfoStyled   MapStyled"
-                     "UserInfoStyled   MapStyled"; */}
-display: flex;
-flex-direction: column;
-width:100vh;;
-height: 100vh;
-`
+export const GameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const MainDiv = styled.div`
+  display: flex;
+  gap: 100px;
+  height: 100vh;
+`;

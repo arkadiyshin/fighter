@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LogoStyled = styled.img`
-max-height: 150px;
-width: 1000px;
-grid-area: LogoStyled;
-`
+  height: 150px;
+  margin-left: 350px;
+  margin-right: 350px;
+`;
