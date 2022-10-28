@@ -1,23 +1,18 @@
-import React from 'react';
-import { Avatar } from './Avatar';
-import { Skills } from './Skills';
+import React from "react";
+import { Avatar } from "./Avatar";
+import { Skills } from "./Skills";
+import { UserInfoContainer, UserNameInfo } from "./UserInfo.styled";
 
-export const UserInfo = ()=> {
-    return(
-        <div>
-            <div>
-                <Avatar/>
-            </div>
-            <div>
-                UserName
-            </div>
-            <div>
-                Level
-            </div>
-            <div>
-                <Skills/>
-            </div>
-
-        </div>
-    )
-}
+export const UserInfo = () => {
+  return (
+    <UserInfoContainer>
+      <Avatar />
+      <UserNameInfo>
+        <h1>UserName</h1>
+      </UserNameInfo>
+      <div>
+        <Skills />
+      </div>
+    </UserInfoContainer>
+  );
+};
