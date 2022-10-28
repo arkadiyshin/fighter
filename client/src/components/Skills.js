@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDexterity, setHealth, setStrangth, setIntuition } from '../redux/skillsSlice';
+import { setDexterity, setHealth, setStrangth, setIntuition, setSkills } from '../redux/skillsSlice';
 import { SkillsStyled } from './Skills.styled';
 
 
@@ -23,6 +23,11 @@ export const Skills = (props)=> {
     function addHealth () {
         dispatch(setHealth());
     };
+
+    useEffect( () => {
+        //dispatch(setSkills())
+
+    },[])
 
     return(
         <SkillsStyled> Skills:            

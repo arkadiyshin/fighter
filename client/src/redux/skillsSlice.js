@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import api from '../services/api';
 
 const initialState = {
   strength: 0,
@@ -15,7 +15,7 @@ const skillsSlice = createSlice({
 
   reducers: {
       setStrangth: (state)=> {
-      state.strength = state.strength + 1 
+        state.strength = state.strength + 1 
       },
       setDexterity: (state) => {
         state.dexterity = state.dexterity + 1
@@ -29,7 +29,7 @@ const skillsSlice = createSlice({
   },
 });
 
-export const {setStrangth, setDexterity , setIntuition, setHealth} = skillsSlice.actions;
+export const {setStrangth, setDexterity , setIntuition, setHealth, setSkills} = skillsSlice.actions;
 
   
 
