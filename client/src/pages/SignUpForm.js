@@ -20,9 +20,9 @@ import {
   RulesList,
   LogInDataError,
 } from "../components/LoginForm.styled";
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 const validationSchema = Yup.object({
   username: Yup.string().required(),
@@ -39,7 +39,7 @@ export const SignUpForm = () => {
   const navigate = useNavigate();
 
   const handleSignIn = (values) => {
-    axios.post("http://localhost:3000/auth/signup", values).then((res) => {
+    api.post("/auth/signup", values).then((res) => {
       console.log(res);
       if (res.data === "Created") {
         navigate("/");
