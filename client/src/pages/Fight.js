@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Logo } from "../components/Logo";
 import { FighterP, FighterStyled } from './Fighter.styled';
 import '../App.css'
 import { getRandomEnemy, finishGame } from '../services/api';
@@ -97,8 +98,9 @@ export const Fight = () => {
 
     return (
         <>
-
+            <Logo />
             <div className='flex'>
+            
                 <FighterP>{playerHealth}</FighterP>
                 <FighterStyled src={player.avatar_url} alt="" />
                 <div className="flex2">
