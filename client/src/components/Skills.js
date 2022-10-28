@@ -11,54 +11,54 @@ import api from "../services/api";
 import { SkillsStyled } from "./Skills.styled";
 
 export const Skills = (props) => {
-  const dispatch = useDispatch();
-  const strength = useSelector((state) => state.skillsSlice.strength);
-  const dexterity = useSelector((state) => state.skillsSlice.dexterity);
-  const intuition = useSelector((state) => state.skillsSlice.intuition);
-  const health = useSelector((state) => state.skillsSlice.health);
-  const free_points = useSelector((state) => state.skillsSlice.free_points);
-  const experience = useSelector((state) => state.skillsSlice.experience);
-  const level = useSelector((state) => state.skillsSlice.level);
 
-  const [edit, setEdit] = useState(false);
+    const dispatch = useDispatch();
+    const strength = useSelector((state) => state.skillsSlice.strength);
+    const dexterity = useSelector((state) => state.skillsSlice.dexterity);
+    const intuition = useSelector((state) => state.skillsSlice.intuition);
+    const health = useSelector((state) => state.skillsSlice.health);
+    const free_points = useSelector((state) => state.skillsSlice.free_points);
+    const experience = useSelector((state) => state.skillsSlice.experience);
+    const level = useSelector((state) => state.skillsSlice.level);
+    const id = useSelector((state) => state.skillsSlice.id);
 
-  function addStrength() {
-    dispatch(setStrangth());
+    const [edit, setEdit] = useState(false);
+
+    function addStrength() {
+      dispatch(setStrangth());
+    }
+    function addDexterity() {
+      dispatch(setDexterity());
+    }
+    function addIntuition() {
+      dispatch(setIntuition());
+    }
+    function addHealth() {
+      dispatch(setHealth());
+    }
+
+    const updateSkills = async () => {
+        setEdit( free_points > 0 );
+    }
+    
+    useEffect(() => {
+        updateSkills();
+    }, [])
+    
+    const saveSkills = async () => {
+        
+        const body = {
+            free_points, 
+            health, 
+            strength, 
+            dexterity, 
+            intuition, 
+        } 
+
+        setEdit(false);
+        const res = await api.put(`users/${id}/skills`, body);
+        console.log(res); 
   }
-  function addDexterity() {
-    dispatch(setDexterity());
-  }
-  function addIntuition() {
-    dispatch(setIntuition());
-  }
-  function addHealth() {
-    dispatch(setHealth(99));
-  }
-
-  const updateSkills = async () => {
-    // const res = await api('/users/1/');
-
-    // dispatch(setSkills({
-    //     strength: res.data.strength,
-    //     dexterity: res.data.dexterity,
-    //     intuition: res.data.intuition,
-    //     health: res.data.health,
-    //     free_points: res.data.free_points,
-    //     experience: res.data.experience,
-    //     level: res.data.level
-    // }))
-
-    setEdit(free_points > 0);
-  };
-
-  useEffect(() => {
-    updateSkills();
-  }, []);
-
-  const saveSkills = () => {
-    // api(/users/1/updateSkills)
-    setEdit(false);
-  };
 
   return (
     <SkillsStyled>
