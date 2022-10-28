@@ -41,10 +41,10 @@ export const LoginForm = () => {
   const handleSignIn = (values) => {
     axios.post("http://localhost:3000/auth/login", values).then((res) => {
       console.log(res);
-      if (res.data === "password right") {
-        navigate("/main");
-      } else if (res.data === "password error" || res.data === "Unknow user") {
+      if (res.data === "password error" || res.data === "Unknow user") {
         setIsLoginDataRight(false);
+      } else if (typeof res.data === "object") {
+        navigate("/main");
       }
     });
   };
@@ -110,7 +110,9 @@ export const LoginForm = () => {
               Create new account
             </RegistrationLink>
             {!isLoginDataRight ? (
-              <LogInDataError>Email or password is not correct</LogInDataError>
+              <LogInDataError>
+                Username or password is not correct
+              </LogInDataError>
             ) : null}
             <LogInButton type="submit" disabled={formik.isSubmitting}>
               Login

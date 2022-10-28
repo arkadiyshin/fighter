@@ -1,6 +1,5 @@
 import argon2 from "argon2";
 
-
 const verifyPassword = (req, res) => {
     argon2
         .verify(req.user.password_hash, req.body.password)
