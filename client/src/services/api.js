@@ -12,4 +12,14 @@ export const getTiles = async () => {
     return result.data;
 }
 
+export const getRandomEnemy = async (level_min, level_max) => {
+    const result = await api.get(`/games/start?level_min=${level_min}&level_max=${level_max}`);
+    return result.data;
+}
+
+export const finishGame = async( gameResult ) => {
+    const result = await api.post(`/games/finish`, gameResult);
+    return result.data;
+}
+
 export default api;
