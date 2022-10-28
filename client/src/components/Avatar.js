@@ -1,7 +1,9 @@
 import React from "react";
-import avatar from "../assets/images/thor.jpg";
 import { AvatarStyled } from "./UserInfo.styled";
+import { useSelector } from "react-redux";
+
 
 export const Avatar = () => {
-  return <AvatarStyled src={avatar} alt="" />;
+  const avatar_url = useSelector((state) => state.skillsSlice.avatar_url);
+  return <AvatarStyled src={avatar_url} alt="" />;
 };
