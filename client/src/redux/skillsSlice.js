@@ -18,21 +18,29 @@ const skillsSlice = createSlice({
   initialState,
 
   reducers: {
-    setStrangth: (state) => {
-      state.strength = state.strength + 1;
-      state.free_points = state.free_points - 1;
+    incrementStrangth: (state) => {
+      if (state.free_points > 0) {
+        state.strength = state.strength + 1;
+        state.free_points = state.free_points - 1;
+      }
     },
-    setDexterity: (state) => {
-      state.dexterity = state.dexterity + 1;
-      state.free_points = state.free_points - 1;
+    incrementDexterity: (state) => {
+      if (state.free_points > 0) {
+        state.dexterity = state.dexterity + 1;
+        state.free_points = state.free_points - 1;
+      }
     },
-    setIntuition: (state) => {
-      state.intuition = state.intuition + 1;
-      state.free_points = state.free_points - 1;
+    incrementIntuition: (state) => {
+      if (state.free_points > 0) {
+        state.intuition = state.intuition + 1;
+        state.free_points = state.free_points - 1;
+      }
     },
-    setHealth: (state) => {
-      state.health = state.health + 10;
-      state.free_points = state.free_points - 1;
+    incrementHealth: (state) => {
+      if (state.free_points > 0) {
+        state.health = state.health + 10;
+        state.free_points = state.free_points - 1;
+      }
     },
     setSkills: (state, action) => {
       state.strength = action.payload.strength;
@@ -64,10 +72,10 @@ const skillsSlice = createSlice({
 });
 
 export const {
-  setStrangth,
-  setDexterity,
-  setIntuition,
-  setHealth,
+  incrementStrangth,
+  incrementDexterity,
+  incrementIntuition,
+  incrementHealth,
   setSkills,
   initialize,
 } = skillsSlice.actions;

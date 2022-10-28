@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar } from "./Avatar";
 import { Skills } from "./Skills";
 import { UserInfoContainer, UserNameInfo } from "./UserInfo.styled";
+import {Link} from 'react-router-dom';
 
 export const UserInfo = () => {
   return (
@@ -13,6 +14,7 @@ export const UserInfo = () => {
       <div>
         <Skills />
       </div>
+      <button><Link to='/fight'>Fight</Link></button>
     </UserInfoContainer>
   );
 };

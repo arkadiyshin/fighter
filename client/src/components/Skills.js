@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setDexterity,
-  setHealth,
-  setStrangth,
-  setIntuition,
+  incrementDexterity,
+  incrementHealth,
+  incrementStrangth,
+  incrementIntuition,
 } from "../redux/skillsSlice";
 import api from "../services/api";
 import { SkillsStyled } from "./Skills.styled";
@@ -23,16 +23,16 @@ export const Skills = (props) => {
   const [edit, setEdit] = useState(false);
 
   function addStrength() {
-    dispatch(setStrangth());
+    dispatch(incrementStrangth());
   }
   function addDexterity() {
-    dispatch(setDexterity());
+    dispatch(incrementDexterity());
   }
   function addIntuition() {
-    dispatch(setIntuition());
+    dispatch(incrementIntuition());
   }
   function addHealth() {
-    dispatch(setHealth());
+    dispatch(incrementHealth());
   }
 
   const updateSkills = async () => {
@@ -52,6 +52,7 @@ export const Skills = (props) => {
       intuition,
     };
     const res = await api.put(`users/${id}/skills`, body);
+    setEdit(free_points > 0);
     console.log(res);
   };
 
