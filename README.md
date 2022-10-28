@@ -7,7 +7,7 @@
 ### Backlog
 https://github.com/users/arkadiyshin/projects/7/
 
-### API 
+### External API 
 
 https://akabab.github.io/superhero-api/
 
@@ -18,6 +18,9 @@ erDiagram
 
 USERS ||--|{ AVATARS : "use"
 ENEMIES ||--|{ AVATARS : "use"
+USERS ||--|{ LEVELS : "use"
+ENEMIES ||--|{ LEVELS : "use"
+
 
 USERS{
   int id PK
@@ -25,6 +28,7 @@ USERS{
   string password_hash
   int level
   int experience
+  int free_points
   int health
   int strength
   int dexterity
@@ -45,8 +49,110 @@ ENEMIES{
 
 AVATARS{
   int id PK
-  blob avatar
+  string avatar_url
   enum alignment "good|bad"
 }
 
+LEVELS{
+  int level PK
+  int experience
+  int free_points
+}
+
 ```
+
+### API 
+
+### USERS
+
+#### POST /users/signup
+> - body
+>   - username
+>   - password
+
+> - response
+>   - 201: created
+  
+  
+#### POST /users/login
+> - body
+>   - username
+>   - password
+
+> - response
+>   - 202: success
+
+
+#### GET /users/:id
+> - responce 
+>   - 200:
+>   - username
+>   -  evel
+>   - experience
+>   - free_points
+>   - health
+>   - strength
+>   - dexterity
+>   - intuition  
+>   - avatar
+
+
+#### PUT /users/:id/profile
+> - body
+>   - avatar_id
+
+> - responce
+>   - 202: success
+>   
+
+#### PUT /users/:id/skills
+> - body
+>   - free_points
+>   - health
+>   - strength
+>   - dexterity
+>   - intuition
+  
+> - responce
+>   - 202: success
+
+
+### GAME
+
+#### GET /games/start
+> - query
+>   - level_min
+>   - level_max
+
+> - responce
+>   - 200:
+>   - enemy_name
+>   - enemy_level
+>   - enemy_health
+>   - enemy_strength
+>   - enemy_dexterity
+>   - enemy_intuition
+>   - enemy_avatar_url
+>   
+
+#### POST /games/finish/:player_id
+> - body
+>   - player_id
+>   - player_health
+>   - enemy_id
+>   - enemy_health
+
+> - responce
+>   - 202:
+>   - experince
+>   - level
+>   - free_points
+
+
+### AVATARS
+
+#### GET /avatars/
+> - responce 
+>   - 200:
+>   - id
+>   - avatar_url

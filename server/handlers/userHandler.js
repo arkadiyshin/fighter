@@ -51,3 +51,48 @@ export const checkIfUserNameExists = (req, res, next) => {
       res.status(500).send("Error retrieving data from database");
     });
 };
+
+export const getUser = async (req, res) => {
+    const { id } = req.params;
+    const result = await db.query(`SELECT username, level, experience, health, strength, dexterity, intuition, free_points, avatar_url
+                                FROM users 
+                                LEFT JOIN avatars
+	                              ON users.avatar_id = avatars.id
+                                WHERE users.id = $1`, [id])
+    if (result.rowCount > 0) {
+        res.send(result.rows[0]);
+    }
+
+}
+
+export const updateProfile = async (req, res) => {
+
+    const { id } = req.params;
+    const { avatar_id } = req.body;
+
+    const result = await db.query(`UPDATE users SET (avatar_id = $1) WHERE id = $2`, [avatar_url, id])
+    if (result.rowCount > 0) {
+        res.sendStatus(204);
+    }
+
+}
+
+export const updateSkills = async (req, res) => {
+
+    const { id } = req.params;
+    const {
+        free_points,
+        health,
+        strength,
+        dexterity,
+        intuition
+    } = req.body;
+
+    const result = await db.query(`UPDATE users SET health = $1, strength = $2, dexterity = $3, intuition = $4, free_points = $5 WHERE id = $6`,
+
+        [health, strength, dexterity, intuition, free_points, id])
+    if (result.rowCount > 0) {
+        res.sendStatus(204);
+    }
+
+}
