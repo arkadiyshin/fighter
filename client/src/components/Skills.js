@@ -51,7 +51,6 @@ export const Skills = (props) => {
       dexterity,
       intuition,
     };
-
     const res = await api.put(`users/${id}/skills`, body);
     console.log(res);
   };
