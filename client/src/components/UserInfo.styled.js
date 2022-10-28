@@ -8,6 +8,7 @@ export const UserInfoContainer = styled.div`
 
 export const AvatarStyled = styled.img`
   border-radius: 30px;
+  width: 200px;
 `;
 
 export const UserNameInfo = styled.div`
