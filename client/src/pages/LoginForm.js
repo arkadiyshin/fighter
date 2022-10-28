@@ -21,9 +21,11 @@ import {
   RulesList,
   RegistrationLink,
 } from "../components/LoginForm.styled";
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { initialize } from "../redux/skillsSlice";
+import api from "../services/api";
 
 const validationSchema = Yup.object({
   username: Yup.string().required(),
@@ -37,13 +39,15 @@ export const LoginForm = () => {
   const [isHoveringUserName, setIsHoveringUserName] = useState(false);
   const [isHoveringPassword, setisHoveringPassword] = useState(false);
   const [isLoginDataRight, setIsLoginDataRight] = useState(true);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSignIn = (values) => {
-    axios.post("http://localhost:3000/auth/login", values).then((res) => {
+    api.post("/auth/login", values).then((res) => {
       console.log(res);
       if (res.data === "password error" || res.data === "Unknow user") {
         setIsLoginDataRight(false);
       } else if (typeof res.data === "object") {
+        dispatch(initialize(res.data));
         navigate("/main");
       }
     });
