@@ -52,6 +52,7 @@ export const Skills = (props) => {
       intuition,
     };
     const res = await api.put(`users/${id}/skills`, body);
+    setEdit(free_points > 0);
     console.log(res);
   };
 
