@@ -6,7 +6,8 @@ const verifyPassword = (req, res) => {
         .verify(req.user.password_hash, req.body.password)
         .then((isVerified) => {
             if (isVerified) {
-                res.send("password right");
+                const {password_hash, ...user} = req.user
+                res.send( user );
             } else {
                 res.send('password error');
             }
