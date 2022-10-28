@@ -34,7 +34,6 @@ const skillsSlice = createSlice({
       state.health = state.health + 10;
       state.free_points = state.free_points - 1;
     },
-
     setSkills: (state, action) => {
       state.strength = action.payload.strength;
       state.dexterity = action.payload.dexterity;

@@ -46,13 +46,11 @@ export const Skills = (props) => {
   const saveSkills = async () => {
     const body = {
       free_points,
-      health,
+      health: health / 10,
       strength,
       dexterity,
       intuition,
     };
-
-    if (free_points <= 0) setEdit(false);
 
     const res = await api.put(`users/${id}/skills`, body);
     console.log(res);

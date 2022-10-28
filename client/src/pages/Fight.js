@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import fighter from '../assets/images/fighter.png'
 import fighter2 from '../assets/images/reversefighter.png'
 import { FighterStyled } from './Fighter.styled';
 import '../App.css'
 
-export const Fight = () => {
+export const Fight = () => {    
+    
     return (
         <>
 
@@ -42,6 +43,7 @@ export const Fight = () => {
                 </div>
                 <FighterStyled src={fighter2} alt="" />
             </div>
+            <button className='punch'>Punch</button>
         </>
 
     )
