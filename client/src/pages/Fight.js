@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 export const Fight = () => {
 
+    const [checkFinish, setCheckFinish] = useState(false);
     const [enemy, setEnemy] = useState();
     const [defence, setDefence] = useState();
     const [attack, setAttack] = useState();
@@ -27,6 +28,16 @@ export const Fight = () => {
     useEffect(() => {
         initialEnemy();
     }, [])
+
+    useEffect(() => {
+        
+        if(checkFinish) {
+            checkFinishFight();
+        }
+
+        setCheckFinish(false);
+
+    }, [checkFinish] )
 
     const punchHandler = async () => {
 
@@ -62,13 +73,15 @@ export const Fight = () => {
         console.log(`playerDamages ${playerDamages}`);
 
 
+        setCheckFinish(true)
         setDefence(undefined)
         setAttack(undefined)
 
-        // if someone has 0 health - finish endpoint - go to result page
-        setPlayerHealth( (health) => health )
-        setEnemyHealth( (health) => health )
+    }
 
+    const checkFinishFight = async() => {
+        
+        // if someone has 0 health - finish endpoint - go to result page
         if (!playerHealth || !enemyHealth) {
 
             //console.log('Finish');
@@ -82,9 +95,7 @@ export const Fight = () => {
             const result = await finishGame(gameResult);
             console.table(result)
         }
-
     }
-
 
     const defenceOnChange = (e) => {
         setDefence(e.target.value)

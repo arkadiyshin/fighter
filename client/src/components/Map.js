@@ -11,7 +11,7 @@ export const Map = () => {
 
   const initialTiles = async () => {
     const map = await getTiles();
-    console.log(map);
+    //console.log(map);
     dispatch(setTiles(map));
   };
 
