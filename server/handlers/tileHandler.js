@@ -21,5 +21,6 @@ export const createEmptyMap = async (req, res) => {
             const result = await db.query(`INSERT INTO tiles (x, y) VALUES ($1, $2)`, [x, y]);
         }
     }
+    res.sendStatus(201);
 
 }
