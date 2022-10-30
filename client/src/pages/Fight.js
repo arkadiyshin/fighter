@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Logo } from "../components/Logo";
-import { FighterP, FighterStyled, FighterStyledImg } from './Fighter.styled';
+import { FighterP, FighterStyledImg } from './Fighter.styled';
 import '../App.css'
 import { getRandomEnemy, finishGame } from '../services/api';
 import { useSelector } from "react-redux";
@@ -108,7 +108,7 @@ export const Fight = () => {
     if (!enemy || !player) return null;
 
     return (
-        <FighterStyled>
+        <>
             <Logo />
             <div className='flex'>
             
@@ -148,7 +148,7 @@ export const Fight = () => {
                 <FighterP>{enemyHealth}</FighterP>
             </div>
             <button className='punch' onClick={punchHandler}>Punch</button>
-        </FighterStyled>
+        </>
 
     )
 }
