@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { NEW_CONSTANT } from "../constants/constants";
 import {
   GlobalStyle,
-  Logo,
+//  Logo,
   LogInTitle,
   PasswordErrorIcon,
   UserNameErrorIcon,
@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { initialize } from "../redux/skillsSlice";
 import api from "../services/api";
+import { Logo } from "../components/Logo";
 
 const validationSchema = Yup.object({
   username: Yup.string().required(),
@@ -64,7 +65,7 @@ export const LoginForm = () => {
     <>
       <GlobalStyle />
       <LoginContainer>
-        <Logo src={NEW_CONSTANT.logo} />
+        <Logo />
         <FormContainer>
           <LogInTitle>Log In</LogInTitle>
           <LogInForm onSubmit={formik.handleSubmit} noValidate>

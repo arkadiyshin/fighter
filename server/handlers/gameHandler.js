@@ -84,10 +84,15 @@ export const finishGame = async (req, res) => {
 
     // calculate new experience
     let changeExperience = 0;
+    let fightResult = '';
     if( player_health > 0 ) {
         changeExperience = enemyRow.health * 10;
+        fightResult = 'win';
     } else if(enemy_health > 0 ) {
         changeExperience = - enemy_health;
+        fightResult = 'lose';
+    } else {
+        fightResult = 'draw';
     }
     newExperience += changeExperience;
 
@@ -125,7 +130,9 @@ export const finishGame = async (req, res) => {
         const changes = {
             level: newLevel,
             experience: newExperience,
-            free_points: newFreePoints 
+            free_points: newFreePoints,
+            changeExperience: changeExperience,
+            fightResult: fightResult, 
         }
         console.log(changes)
         res.status(202).send(changes);

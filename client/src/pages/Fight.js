@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Logo } from "../components/Logo";
-import { FighterP, FighterStyled, FighterStyledImg } from './Fighter.styled';
+import { FighterP, FighterStyledImg } from './Fighter.styled';
 import '../App.css'
 import { getRandomEnemy, finishGame } from '../services/api';
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 export const Fight = () => {
 
@@ -16,6 +17,7 @@ export const Fight = () => {
     const bodyParts = ['head', 'body', 'legs'];
 
     const player = useSelector((state) => state.skillsSlice);
+    const navigate = useNavigate();
 
     //console.log(player)
     const initialEnemy = async () => {
@@ -94,6 +96,7 @@ export const Fight = () => {
             console.table(gameResult)
             const result = await finishGame(gameResult);
             console.table(result)
+            navigate('/result', {state:{result}})
         }
     }
 
@@ -108,7 +111,7 @@ export const Fight = () => {
     if (!enemy || !player) return null;
 
     return (
-        <FighterStyled>
+        <>
             <Logo />
             <div className='flex'>
             
@@ -148,7 +151,7 @@ export const Fight = () => {
                 <FighterP>{enemyHealth}</FighterP>
             </div>
             <button className='punch' onClick={punchHandler}>Punch</button>
-        </FighterStyled>
+        </>
 
     )
 }
