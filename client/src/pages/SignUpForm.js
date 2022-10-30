@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { NEW_CONSTANT } from "../constants/constants";
 import {
   GlobalStyle,
-  Logo,
+//  Logo,
   LogInTitle,
   PasswordErrorIcon,
   UserNameErrorIcon,
@@ -20,6 +20,7 @@ import {
   RulesList,
   LogInDataError,
 } from "../components/LoginForm.styled";
+import { Logo } from "../components/Logo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
@@ -60,7 +61,7 @@ export const SignUpForm = () => {
     <>
       <GlobalStyle />
       <LoginContainer>
-        <Logo src={NEW_CONSTANT.logo} />
+        <Logo />
         <FormContainer>
           <LogInTitle>Sign Up</LogInTitle>
           <LogInForm onSubmit={formik.handleSubmit} noValidate>
