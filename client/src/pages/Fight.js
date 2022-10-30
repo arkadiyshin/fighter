@@ -4,6 +4,7 @@ import { FighterP, FighterStyledImg } from './Fighter.styled';
 import '../App.css'
 import { getRandomEnemy, finishGame } from '../services/api';
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 export const Fight = () => {
 
@@ -16,6 +17,7 @@ export const Fight = () => {
     const bodyParts = ['head', 'body', 'legs'];
 
     const player = useSelector((state) => state.skillsSlice);
+    const navigate = useNavigate();
 
     //console.log(player)
     const initialEnemy = async () => {
@@ -94,6 +96,7 @@ export const Fight = () => {
             console.table(gameResult)
             const result = await finishGame(gameResult);
             console.table(result)
+            navigate('/result', {state:{result}})
         }
     }
 
