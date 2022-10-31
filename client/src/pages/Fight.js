@@ -25,7 +25,7 @@ export const Fight = () => {
     const initialEnemy = async () => {
         const newEnemy = await getRandomEnemy(player.level, player.level);
         setEnemy(newEnemy);
-        setEnemyHealth(newEnemy.enemy_health * 10);
+        setEnemyHealth(newEnemy.enemy_health);
         setPlayerHealth(player.health)
     }
 

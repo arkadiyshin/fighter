@@ -13,7 +13,7 @@ export const startGame = async (req, res) => {
             enemies.id as enemy_id,
             name as enemy_name, 
             level as enemy_level, 
-            health as enemy_health, 
+            (health * 10) as enemy_health, 
             strength as enemy_strength, 
             dexterity as enemy_dexterity, 
             intuition as enemy_intuition, 
