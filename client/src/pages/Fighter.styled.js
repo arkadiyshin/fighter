@@ -17,3 +17,8 @@ width: 10vh;
 background: url(${punch}) center /100% no-repeat;
 `
 
+export const FighterDiv = styled.div`
+color: #ffffff;
+font-size: 20px;
+padding: 15px;
+`

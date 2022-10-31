@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Logo } from "../components/Logo";
-import { FighterP, FighterStyledImg, FighterButton } from './Fighter.styled';
+import { FighterDiv, FighterStyledImg, FighterButton } from './Fighter.styled';
 import '../App.css'
 import { getRandomEnemy, finishGame } from '../services/api';
 import { useSelector } from "react-redux";
@@ -118,12 +118,13 @@ export const Fight = () => {
 
                 {/* <FighterP>{playerHealth}</FighterP> */}
                 <div className='flex2'>
-                    <HealthProgress percent={ playerHealth / player.health * 100} health={playerHealth}/>
                     <FighterStyledImg src={player.avatar_url} alt="" />
+                    <HealthProgress percent={ playerHealth / player.health * 100} health={playerHealth}/>
                 </div>
-
+                <FighterDiv >
                 <div className="flex2">
                     <h2>Defence</h2>
+                    
                     <label>
                         <input type="radio" name="defence" value='head' checked={defence === "head"} onChange={defenceOnChange} />
                         Head
@@ -136,12 +137,15 @@ export const Fight = () => {
                         <input type="radio" name="defence" value='legs' checked={defence === "legs"} onChange={defenceOnChange} />
                         Legs
                     </label>
+                    
                 </div>
-                
+                </FighterDiv>
                 <FighterButton className='flex2' onClick={punchHandler} />
 
+                <FighterDiv>
                 <div className="flex2">
                     <h2>Attack</h2>
+                    
                     <label>
                         <input type="radio" name="attack" value='head' checked={attack === "head"} onChange={attackOnChange} />
                         Head
@@ -154,12 +158,14 @@ export const Fight = () => {
                         <input type="radio" name="attack" value='legs' checked={attack === "legs"} onChange={attackOnChange} />
                         Legs
                     </label>
+                    
                 </div>
+                </FighterDiv>
                 
                 {/* <FighterP>{enemyHealth}</FighterP> */}
                 <div className='flex2'>
-                    <HealthProgress percent={ enemyHealth / enemy.enemy_health * 100} health={enemyHealth}/>
                     <FighterStyledImg src={enemy.enemy_avatar_url} alt="" />
+                    <HealthProgress percent={ enemyHealth / enemy.enemy_health * 100} health={enemyHealth}/>
                 </div>
             </div>
             {/* <div className='flex'>
