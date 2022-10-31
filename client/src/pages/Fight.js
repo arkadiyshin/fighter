@@ -152,7 +152,7 @@ export const Fight = () => {
 
                     </div>
                 </FighterDiv>
-                <FighterButton className='flex2' onClick={punchHandler} />
+                <FighterButton onClick={punchHandler} />
 
                 <FighterDiv>
                     <div className="flex2">
