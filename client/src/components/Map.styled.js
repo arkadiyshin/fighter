@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const MapStyled = styled.div`  
-  height: 70%;
-  width: 50%;
-  margin: 70px auto;
+  height: 90%;
+  width: 90%;
+  margin: 10px auto;
   display: grid; 
   grid-template-columns: repeat(25,4%);
   gird-template-rows: repeat(19);  

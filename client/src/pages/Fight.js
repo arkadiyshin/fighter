@@ -15,7 +15,7 @@ export const Fight = () => {
     const [attack, setAttack] = useState();
     const [playerHealth, setPlayerHealth] = useState(0);
     const [enemyHealth, setEnemyHealth] = useState(0);
-    const [log, setLog] = useState('');
+    const [log, setLog] = useState([]);
     const bodyParts = ['head', 'body', 'legs'];
 
     const player = useSelector((state) => state.skillsSlice);
@@ -45,42 +45,47 @@ export const Fight = () => {
 
     const punchHandler = async () => {
 
-        let logText = '';
+        let logText = [];
         // check if choosen defence and attack
         if (!defence) {
-            console.log('Chose defence!')
+            logText.push('Chose defence!')
             return;
         }
         if (!attack) {
-            console.log('Chose attack!')
+            logText.push('Chose attack!')
             return;
         }
 
         // random atack and deffence of enemy 
         const enemyDefenceIndex = Math.floor(Math.random() * 3);
-        const enemyAttackIndex = Math.floor(Math.random() * 4) - 1;
-
-        logText += `${enemy.enemy_name} hits the ${bodyParts[enemyAttackIndex]} \n`;
-
+        const enemyAttackIndex = Math.floor(Math.random() * 3);
+        // console.log(`defence`, enemyDefenceIndex)
+        // console.log(`attack`, enemyAttackIndex)
 
         let enemyDamages = 0, playerDamages = 0;
+
+        logText.push(`${enemy.enemy_name} hits ${player.username} in the ${bodyParts[enemyAttackIndex]}`);
         // calculate enemies damage and rest of health
         if (defence !== bodyParts[enemyAttackIndex]) {
             enemyDamages = enemy.enemy_strength;
             setPlayerHealth((health) => (health < enemyDamages) ? 0 : (health - enemyDamages))
+            logText.push(`${player.username} gets ${enemyDamages} points of damage`);
+        } else {
+            logText.push(`${player.username} blocked a punch`);
         }
-        logText += `${player.username} gets ${enemyDamages} points of damage \n`;
 
-        logText += `${enemy.enemy_name} protects the ${bodyParts[enemyAttackIndex]} \n`;
+        logText.push(`${player.username} hits ${enemy.enemy_name} in the ${attack}`);
         // calculate players damage and rest of health
         if (attack !== bodyParts[enemyDefenceIndex]) {
             playerDamages = player.strength;
             setEnemyHealth((health) => (health < playerDamages) ? 0 : (health - playerDamages))
+            logText.push(`${enemy.enemy_name} gets ${playerDamages} points of damage`);
+        } else {
+            logText.push(`${enemy.enemy_name} blocked a punch`);
         }
-        logText += `${enemy.enemy_name} gets ${playerDamages} points of damage \n`;
 
-        console.log(`enemyDamages ${enemyDamages}`);
-        console.log(`playerDamages ${playerDamages}`);
+        // console.log(`enemyDamages ${enemyDamages}`);
+        // console.log(`playerDamages ${playerDamages}`);
 
 
         setCheckFinish(true)
@@ -101,9 +106,9 @@ export const Fight = () => {
                 enemy_id: enemy.enemy_id,
                 enemy_health: enemyHealth
             }
-            console.table(gameResult)
+            //console.table(gameResult)
             const result = await finishGame(gameResult);
-            console.table(result)
+            //console.table(result)
             navigate('/result', { state: { result } })
         }
     }
@@ -118,11 +123,7 @@ export const Fight = () => {
 
     if (!enemy || !player) return null;
 
-    console.log(player)
-    console.log(enemyHealth)
-    console.log(enemy.enemy_health)
-    console.log(enemyHealth / enemy.enemy_health * 100)
-    
+
     return (
         <>
             <Logo />
@@ -152,8 +153,14 @@ export const Fight = () => {
 
                     </div>
                 </FighterDiv>
-                <FighterButton className='flex2' onClick={punchHandler} />
-
+                <div className='flex2'>
+                    <FighterButton onClick={punchHandler} />
+                    <div className='flex'>
+                        <FighterP>
+                            {log.map(text => <p> {text} </p>)}
+                        </FighterP>
+                    </div>
+                </div>
                 <FighterDiv>
                     <div className="flex2">
                         <h2>Attack</h2>
@@ -180,9 +187,7 @@ export const Fight = () => {
                     <HealthProgress percent={enemyHealth / enemy.enemy_health * 100} health={enemyHealth} />
                 </div>
             </div>
-            {/* <FighterP>
-                <p>{log}</p>
-            </FighterP> */}
+
             {/* <div className='flex'>
                 <button onClick={punchHandler}><FighterButton className='flex' /></button>
             </div> */}
