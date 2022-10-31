@@ -67,6 +67,7 @@ const skillsSlice = createSlice({
       state.level = action.payload.level;
       state.experience = action.payload.experience;
       state.avatar_url = action.payload.avatar_url;
+      state.username = action.payload.username;
     },
   },
 });

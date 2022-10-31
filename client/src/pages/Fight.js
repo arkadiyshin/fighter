@@ -118,6 +118,11 @@ export const Fight = () => {
 
     if (!enemy || !player) return null;
 
+    console.log(player)
+    console.log(enemyHealth)
+    console.log(enemy.enemy_health)
+    console.log(enemyHealth / enemy.enemy_health * 100)
+    
     return (
         <>
             <Logo />
