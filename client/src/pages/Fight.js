@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Logo } from "../components/Logo";
-import { FighterP, FighterStyledImg } from './Fighter.styled';
+import { FighterP, FighterStyledImg, FighterButton } from './Fighter.styled';
 import '../App.css'
 import { getRandomEnemy, finishGame } from '../services/api';
 import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { HealthProgress } from '../components/HealthProgress';
 
 export const Fight = () => {
 
@@ -32,14 +33,14 @@ export const Fight = () => {
     }, [])
 
     useEffect(() => {
-        
-        if(checkFinish) {
+
+        if (checkFinish) {
             checkFinishFight();
         }
 
         setCheckFinish(false);
 
-    }, [checkFinish] )
+    }, [checkFinish])
 
     const punchHandler = async () => {
 
@@ -81,8 +82,8 @@ export const Fight = () => {
 
     }
 
-    const checkFinishFight = async() => {
-        
+    const checkFinishFight = async () => {
+
         // if someone has 0 health - finish endpoint - go to result page
         if (!playerHealth || !enemyHealth) {
 
@@ -96,7 +97,7 @@ export const Fight = () => {
             console.table(gameResult)
             const result = await finishGame(gameResult);
             console.table(result)
-            navigate('/result', {state:{result}})
+            navigate('/result', { state: { result } })
         }
     }
 
@@ -114,9 +115,13 @@ export const Fight = () => {
         <>
             <Logo />
             <div className='flex'>
-            
-                <FighterP>{playerHealth}</FighterP>
-                <FighterStyledImg src={player.avatar_url} alt="" />
+
+                {/* <FighterP>{playerHealth}</FighterP> */}
+                <div className='flex2'>
+                    <HealthProgress percent={ playerHealth / player.health * 100} health={playerHealth}/>
+                    <FighterStyledImg src={player.avatar_url} alt="" />
+                </div>
+
                 <div className="flex2">
                     <h2>Defence</h2>
                     <label>
@@ -132,6 +137,9 @@ export const Fight = () => {
                         Legs
                     </label>
                 </div>
+                
+                <FighterButton className='flex2' onClick={punchHandler} />
+
                 <div className="flex2">
                     <h2>Attack</h2>
                     <label>
@@ -147,10 +155,16 @@ export const Fight = () => {
                         Legs
                     </label>
                 </div>
-                <FighterStyledImg src={enemy.enemy_avatar_url} alt="" />
-                <FighterP>{enemyHealth}</FighterP>
+                
+                {/* <FighterP>{enemyHealth}</FighterP> */}
+                <div className='flex2'>
+                    <HealthProgress percent={ enemyHealth / enemy.enemy_health * 100} health={enemyHealth}/>
+                    <FighterStyledImg src={enemy.enemy_avatar_url} alt="" />
+                </div>
             </div>
-            <button className='punch' onClick={punchHandler}>Punch</button>
+            {/* <div className='flex'>
+                <button onClick={punchHandler}><FighterButton className='flex' /></button>
+            </div> */}
         </>
 
     )

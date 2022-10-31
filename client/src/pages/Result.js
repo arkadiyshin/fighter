@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Logo } from "../components/Logo";
+import { ResultP } from './Result.styled';
 
 export const Result = () => {
 
@@ -17,12 +18,12 @@ export const Result = () => {
     //location.state.result
     console.log(state)
     return (
-        <>
+        <ResultP>
             <Logo />
             <p> {messages[result.fightResult].title}</p>
             <p> {messages[result.fightResult].message}</p>
             <p> { result.changeExperience } </p>
             <Link to='/main'><button>Go to main page</button></Link>
-        </>
+        </ResultP>
     )
 }
