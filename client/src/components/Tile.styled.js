@@ -12,7 +12,7 @@ export const TileStyled = styled.div`
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  position: relative;
+  position: relative;  
 `;
 export const TileHeroStyled = styled.img`
 

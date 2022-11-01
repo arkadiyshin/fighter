@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import arrowUp from "../assets/arrow_up.png";
 import arrowRight from "../assets/arrow_right.png";
 import arrowDown from "../assets/arrow_down.png";
 import arrowLeft from "../assets/arrow_left.png";
-import { ButtonsStyled } from "./Map.styled";
-import { useSelector, useDispatch } from "react-redux";
+import { ButtonsStyled, ButtonDown, ButtonLeft, ButtonRight, ButtonUp } from "./Map.styled";
+import { useDispatch } from "react-redux";
 import { moveDown,moveUp, moveRight, moveLeft } from "../redux/fighterSlice";
 
 
@@ -23,13 +23,33 @@ export const Buttons = () => {
     function left() {
         dispatch(moveLeft());
     };
+    useEffect(() => {
+        const onKeypress = e => {             
+            if (e.code == "ArrowLeft") {                
+                left()
+            } else if (e.code == "ArrowUp"){                
+                up()
+            } else if (e.code == "ArrowRight"){                
+                right()
+            } else if (e.code == "ArrowDown"){                
+                down();
+            }                       
+        };
+        document.addEventListener('keydown', onKeypress)        
+      
+        return () => {
+            document.removeEventListener('keydown', onKeypress);         
+        };
+      }, []);
 
     return (
-        <ButtonsStyled>            
-            <button onClick={up}><img src={arrowUp} alt="" /></button>
-            <button onClick={right}><img src={arrowRight} alt="" /></button>
-            <button onClick={down}><img src={arrowDown} alt="" /></button>
-            <button onClick={left}><img src={arrowLeft} alt="" /></button>
-        </ButtonsStyled>
+        <div>
+            <ButtonsStyled>            
+                <ButtonUp><button onClick={up}><img src={arrowUp} alt="" /></button></ButtonUp>
+                <ButtonLeft><button onClick={left}><img src={arrowLeft} alt="" /></button></ButtonLeft>
+                <ButtonRight><button onClick={right}><img src={arrowRight} alt="" /></button></ButtonRight>                
+                <ButtonDown><button onClick={down}><img src={arrowDown} alt="" /></button></ButtonDown>                
+            </ButtonsStyled>
+        </div>
     )
 }
