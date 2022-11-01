@@ -48,7 +48,7 @@
   flex-direction: column;  
   margin: auto;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
 }
 .checkbox {
   display: flex;
