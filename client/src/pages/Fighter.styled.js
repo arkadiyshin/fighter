@@ -15,6 +15,10 @@ export const FighterButton = styled.button`
 height: 10vh;
 width: 10vh;
 background: url(${punch}) center /100% no-repeat;
+margin: 25vh 0 0 0;
+ &:hover {
+    cursor: pointer;
+ }
 `
 
 export const FighterDiv = styled.div`

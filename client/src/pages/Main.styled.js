@@ -8,7 +8,7 @@ export const GameContainer = styled.div`
 
 export const MainDiv = styled.div`
   display: flex;
-  gap: 100px;
+  gap: 20px;
   height: 100vh;
 `;
 

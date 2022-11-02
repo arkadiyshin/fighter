@@ -10,5 +10,12 @@ const assets = {
 export const TileStyled = styled.div`
   background: url(${props => assets[props.title]}) center /100% no-repeat;
   padding: 0px;
-  margit: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  position: relative;  
 `;
+export const TileHeroStyled = styled.img`
+
+height: 100%;
+position: absolute;
+`
