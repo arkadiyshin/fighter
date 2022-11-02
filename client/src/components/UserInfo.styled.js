@@ -9,6 +9,10 @@ export const UserInfoContainer = styled.div`
 export const AvatarStyled = styled.img`
   border-radius: 30px;
   width: 200px;
+
+  &:hover {
+    filter: blur(4px);
+  }
 `;
 
 export const UserNameInfo = styled.div`

@@ -9,8 +9,6 @@ export const AppStyled = styled.div`
 
 export const GlobalStyle = createGlobalStyle`body {
   background-image: url(${background});
-  background-repeat: no-repeat;
-  background-position: center;
   padding: 0;
   margin: 0;
   border: 0;

@@ -3,13 +3,15 @@ import { LoginForm } from "../pages/LoginForm";
 import { Main } from "../pages/Main";
 import { Fight } from "../pages/Fight";
 import { Result } from "../pages/Result";
+import { Settings } from "../pages/Settings";
 
 export const locations = {
   LOGIN: "/",
   SIGNUP: "/signup",
   MAIN: "/main",
-  FIGHT: "/fight", 
-  RESULT: "/result", 
+  FIGHT: "/fight",
+  RESULT: "/result",
+  SETTINGS: "/settings",
 };
 
 export const routes = [
@@ -41,6 +43,12 @@ export const routes = [
     path: locations.RESULT,
     component: Result,
     name: "Result",
+    exact: true,
+  },
+  {
+    path: locations.SETTINGS,
+    component: Settings,
+    name: "Settings",
     exact: true,
   },
 ];
